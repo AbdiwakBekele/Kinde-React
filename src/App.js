@@ -4,14 +4,14 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import KindeAuth from "@kinde-oss/kinde-auth-react";
 
-import Home from './pages/Home';
-// import Profile from './pages/Profile';
-// import Callback from './pages/Callback';
-// import ProtectedRoute from './components/ProtectedRoute';
+
 
 const { KindeProvider } = KindeAuth;
 
-
+import Home from './pages/Home';
+import Profile from './pages/Profile';
+import Callback from './pages/Callback';
+import ProtectedRoute from './components/ProtectedRoute';
 
 
 // import logo from './logo.svg';
@@ -28,7 +28,15 @@ const App = () => (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-
+        <Route path="/callback" element={<Callback />} />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Router>
   </KindeProvider>
