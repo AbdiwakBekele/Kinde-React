@@ -2,30 +2,35 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import KindeAuth from '@kinde-oss/kinde-auth-react'; // ✅ default import
-
-
+import KindeAuth from "@kinde-oss/kinde-auth-react";
 
 import Home from './pages/Home';
 // import Profile from './pages/Profile';
 // import Callback from './pages/Callback';
 // import ProtectedRoute from './components/ProtectedRoute';
 
+const { KindeProvider } = KindeAuth;
+
+
+
 
 // import logo from './logo.svg';
 // import './App.css';
 
 
-const { KindeProvider } = KindeAuth;
-
 const App = () => (
   <KindeProvider
     clientId="ad45f0414c9d4935869534a699c80829"
     domain="https://testabdiwak.kinde.com"
-    logoutUri='https://localhost:3000'
-    redirectUri='https://localhost:3000'
+    logoutUri={window.location.origin}
+    redirectUri={window.location.origin}
   >
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
 
+      </Routes>
+    </Router>
   </KindeProvider>
 );
 
